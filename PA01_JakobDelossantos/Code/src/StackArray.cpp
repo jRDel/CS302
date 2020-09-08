@@ -59,7 +59,10 @@ template<typename DataType>
 StackArray<DataType>::~StackArray()
 {
 
-	clear();
+	top= -1;
+	maxSize=0;
+	delete [] dataItems;
+	dataItems=nullptr;
 	
 }
 	
@@ -75,6 +78,7 @@ void StackArray<DataType>::push(const DataType& newDataItem) throw (logic_error)
 		dataItems[top] = newDataItem;
 		
 	}
+	throw logic_error("Cannot push onto stack; Stack is full.");
 	
 }
 
@@ -84,8 +88,9 @@ DataType StackArray<DataType>::pop() throw (logic_error)
 
 	if(!isEmpty())
 	{
-		top--;
+		return dataItems[top--];
 	}
+	throw logic_error("Cannot pop from an empty stack.");
 	
 }
 
@@ -94,8 +99,7 @@ void StackArray<DataType>::clear()
 {
 	top=-1;
 	maxSize=0;
-	delete [] dataItems;
-	dataItems=nullptr;
+	
 	
 }
 
