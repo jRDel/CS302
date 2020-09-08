@@ -1,0 +1,7 @@
+/home/jakobdelossantos/Desktop/cs302/PA01_JakobDelossantos/Code/build/CMakeFiles/install/strip.dir
+/home/jakobdelossantos/Desktop/cs302/PA01_JakobDelossantos/Code/build/CMakeFiles/edit_cache.dir
+/home/jakobdelossantos/Desktop/cs302/PA01_JakobDelossantos/Code/build/CMakeFiles/test6.dir
+/home/jakobdelossantos/Desktop/cs302/PA01_JakobDelossantos/Code/build/CMakeFiles/rebuild_cache.dir
+/home/jakobdelossantos/Desktop/cs302/PA01_JakobDelossantos/Code/build/CMakeFiles/list_install_components.dir
+/home/jakobdelossantos/Desktop/cs302/PA01_JakobDelossantos/Code/build/CMakeFiles/install/local.dir
+/home/jakobdelossantos/Desktop/cs302/PA01_JakobDelossantos/Code/build/CMakeFiles/install.dir
