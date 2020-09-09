@@ -49,5 +49,7 @@ class StackLinked : public Stack<DataType> {
     StackNode* top;
 };
 
+
+
 #endif		//#ifndef STACKARRAY_H
 

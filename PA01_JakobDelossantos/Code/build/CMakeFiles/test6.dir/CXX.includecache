@@ -6,7 +6,45 @@
 
 #IncludeRegexTransform: 
 
+../include/Stack.h
+stdexcept
+-
+iostream
+-
+
+../include/StackArray.h
+stdexcept
+-
+iostream
+-
+Stack.h
+../include/Stack.h
+
+../include/StackLinked.h
+stdexcept
+-
+iostream
+-
+Stack.h
+../include/Stack.h
+
 ../include/config.h
+
+/home/jakobdelossantos/Desktop/cs302/PA01_JakobDelossantos/Code/src/StackArray.cpp
+iostream
+-
+StackArray.h
+/home/jakobdelossantos/Desktop/cs302/PA01_JakobDelossantos/Code/src/StackArray.h
+Stack.h
+/home/jakobdelossantos/Desktop/cs302/PA01_JakobDelossantos/Code/src/Stack.h
+
+/home/jakobdelossantos/Desktop/cs302/PA01_JakobDelossantos/Code/src/StackLinked.cpp
+iostream
+-
+StackLinked.h
+/home/jakobdelossantos/Desktop/cs302/PA01_JakobDelossantos/Code/src/StackLinked.h
+Stack.h
+/home/jakobdelossantos/Desktop/cs302/PA01_JakobDelossantos/Code/src/Stack.h
 
 /home/jakobdelossantos/Desktop/cs302/PA01_JakobDelossantos/Code/src/test6.cpp
 iostream

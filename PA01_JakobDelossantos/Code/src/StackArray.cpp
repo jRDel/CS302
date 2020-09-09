@@ -2,12 +2,13 @@
 
 #include <iostream>
 #include "StackArray.h"
+#include "Stack.h"
 
 template<typename DataType>
 StackArray<DataType>::StackArray(int maxNumber) : top(-1) //param ctor; creates an empty stack; does not need to allocate because is array implementation
 {
 
-	if(maxNumber>0 && maxNumber<=MAX_STACK_SIZE)
+	if(maxNumber>0)
 	{
 		dataItems = new DataType [maxNumber];
 		maxSize=maxNumber;
@@ -16,10 +17,7 @@ StackArray<DataType>::StackArray(int maxNumber) : top(-1) //param ctor; creates 
 	{
 		cout<<"Cannot initialize a stack of size 0."<<endl;	
 	}
-	else if(maxNumber>MAX_STACK_SIZE)
-	{
-		cout<<"Cannot exceed max stack size."<<endl;
-	}
+	
 	
 }
 
@@ -39,9 +37,9 @@ StackArray<DataType>::StackArray(const StackArray& other) //copy ctor; initializ
 }
 
 template<typename DataType>
-StackArray<DataType>::StackArray& operator=(const StackArray& other) //operator= overload sets stack to be equivalent to the other stack object and returns reference to modified stack.
+StackArray<DataType> & StackArray<DataType>::operator=(const StackArray& other) //operator= overload sets stack to be equivalent to the other stack object and returns reference to modified stack.
 {
-	clear();
+	
 	top=other.top;
 	maxSize=other.maxSize;
 	dataItems = new DataType [other.maxSize];
@@ -59,8 +57,8 @@ template<typename DataType>
 StackArray<DataType>::~StackArray()
 {
 
-	top= -1;
-	maxSize=0;
+	top= 0;
+	//maxSize=0;
 	delete [] dataItems;
 	dataItems=nullptr;
 	
@@ -78,8 +76,13 @@ void StackArray<DataType>::push(const DataType& newDataItem) throw (logic_error)
 		dataItems[top] = newDataItem;
 		
 	}
-	throw logic_error("Cannot push onto stack; Stack is full.");
 	
+	else
+	{
+	
+		throw logic_error("Cannot push onto stack; Stack is full.");
+		
+	}
 }
 
 template<typename DataType>
@@ -88,26 +91,42 @@ DataType StackArray<DataType>::pop() throw (logic_error)
 
 	if(!isEmpty())
 	{
+		
 		return dataItems[top--];
 	}
-	throw logic_error("Cannot pop from an empty stack.");
+	else
+	{
+	
+		throw logic_error("Cannot pop from an empty stack.");
+		
+	}
 	
 }
 
 template<typename DataType>
 void StackArray<DataType>::clear()
 {
-	top=-1;
-	maxSize=0;
 	
+	top=-1;
 	
 }
 
 template<typename DataType>
 bool StackArray<DataType>::isEmpty() const
 {
-
-	return top<0;
+	if (top==-1)
+	{
+		
+	return true;
+	
+	}
+	else
+	{
+	
+	return false;
+	
+	}
+	
 	
 }
 
@@ -115,7 +134,7 @@ template<typename DataType>
 bool StackArray<DataType>::isFull() const
 {
 
-	if(top==maxSize - 1)
+	if(top==(maxSize-1))
 	{
 		return true;
 	}
@@ -131,7 +150,7 @@ template<typename DataType>
 void StackArray<DataType>::showStructure() const
 {
 
-if( isEmpty() ) {
+if( isEmpty() ) { //The problem is here, if you clear the function and try adding again, it won't show up!!!!
 	cout << "Empty stack." << endl;
     }
     else {
