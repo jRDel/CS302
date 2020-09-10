@@ -1,13 +1,13 @@
 //--------------------------------------------------------------------
 //
-//  StackArray.h
+//  StackLinked.h
 // 
 //  Class declaration for the array implementation of the Stack ADT
 //
 //--------------------------------------------------------------------
 
-#ifndef STACKARRAY_H
-#define STACKARRAY_H
+#ifndef STACKLINKED_H
+#define STACKLINKED_H
 
 #include <stdexcept>
 #include <iostream>
@@ -15,6 +15,7 @@
 using namespace std;
 
 #include "Stack.h"
+
 
 template <typename DataType>
 class StackLinked : public Stack<DataType> {
@@ -40,7 +41,11 @@ class StackLinked : public Stack<DataType> {
 
     class StackNode {
       public:
-	StackNode(const DataType& nodeData, StackNode* nextPtr);
+	StackNode(const DataType& nodeData, StackNode* nextPtr)
+	{
+	dataItem=nodeData;
+	next=nextPtr;
+	}
 
 	DataType dataItem;
 	StackNode* next;

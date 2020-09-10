@@ -8,7 +8,7 @@ template<typename DataType>
 StackLinked<DataType>::StackLinked(int maxNumber) : top(nullptr)
 {
 
-DataType dataItem;
+DataType dataItem=NULL;
 
 	for(int i=0; i<maxNumber; i++)
 	{
@@ -20,7 +20,7 @@ DataType dataItem;
 }
 
 template<typename DataType>
-StackLinked<DataType>::StackLinked(const StackLinked& other)
+StackLinked<DataType>::StackLinked(const StackLinked & other)
 {
 
 	for(StackNode * currOther=other.top; currOther!=nullptr; currOther=currOther->next)
@@ -32,7 +32,7 @@ StackLinked<DataType>::StackLinked(const StackLinked& other)
 }
 
 template<typename DataType>
-StackLinked<DataType> & StackLinked<DataType>::operator=(const StackLinked& other)
+StackLinked<DataType> & StackLinked<DataType>::operator=(const StackLinked & other)
 {
 
 	StackNode * curr=top;
@@ -79,8 +79,8 @@ StackLinked<DataType>::~StackLinked()
 template<typename DataType>
 void StackLinked<DataType>::push(const DataType& newDataItem) throw (logic_error)
 {
-
-	if(top)
+int go=1;
+	if(go==1)
 	{
 	StackNode * newNode = new StackNode(newDataItem, top);
 	top=newNode;
@@ -107,10 +107,13 @@ DataType StackLinked<DataType>::pop() throw (logic_error)
 		StackNode * delNode=top;
 		StackNode * temp=top->next;
 		
+		DataType tempItem=delNode->dataItem;
+		
 		delete [] delNode;
 		delNode=nullptr;
 		
 		top=temp;
+		return tempItem;
 		
 	}
 	
@@ -164,11 +167,11 @@ void StackLinked<DataType>::showStructure() const
     else
     {
         cout << "Top\t";
-	for (StackNode* temp = top; temp != 0; temp = temp->next) {
+	for (StackNode* temp = top; temp != nullptr; temp = temp->next) {
 	    if( temp == top ) {
 		cout << "[" << temp->dataItem << "]\t";
 	    }
-	    else {
+	    else{
 		cout << temp->dataItem << "\t";
 	    }
 	}
