@@ -7,91 +7,20 @@
 #include "StackLinked.cpp"
 
 using namespace std;
-/*string convertToPostFix(string* infix)
+
+void evaluatePostfix(char postfixExpression[])
 {
-
-	StackLinked<char> operatorStack;
-	string postfixExpression;
 	
-	int i=0;
-	while(i<infix.length())
-	{
-	
-		if(infix[i]==' ')
-		{
-			i++;
-			char nextCharacter = infix[i];
-			process(nextCharacter, postfixExpression);
-			i++;
-		}
-		else
-		{
-			char nextCharacter = infix[i];
-			process(nextCharacter, postfixExpression);
-			i++;
-		}
-	}
-	
-	while(!operatorStack.isEmpty())
-	{
-	
-		char topOperator = operatorStack.pop();
-		postfixExpression+topOperator;
-		
-	}
-	
-return postfixExpression;
-
-}
-			
-string process(char nextC, string & postfixExpression)
-{
-
-	switch(nextC)
-	{
-		case '0':case '1':case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9':
-		
-			postfixExpression+nextC;
-		
-		case '^':
-			
-			operatorStack
-	
-*/
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-int main()
-{
-
-	char postfixExpression[25];
 	StackLinked<float> stackOne;
 	char character;
 	float characterPush;
-	char op1;
-	char op2;
 	float operand1;
 	float operand2;
 	float result;
-	char resultPush;
-	
-	
-	cout<<"Please input a postfix expression with a max size of 10 characters (operands, operators):"<<endl;
-	cin>>postfixExpression;
-	
+
 	for(int i=0; i<strlen(postfixExpression); i++)
 	{
-	
+		
 		character=postfixExpression[i];
 		
 		switch(character)
@@ -115,7 +44,7 @@ int main()
 						
 					}
 				
-				cout<<result<<endl;
+				
 				stackOne.push(result); //push onto the stack
 				
 				break;
@@ -166,8 +95,52 @@ int main()
 	}
 	
 	result=stackOne.pop();
+	cout<<"The result of evaluating the postfix form is: "<<result<<endl;
 	
-	cout<<"The result of the postfix expression after evaluation is: "<<result<<endl;
+}
+	
+int main()
+{
+	int option;
+	char postfixExpression[25];
+
+	cout<<"Input 1 if you would like to input your own postfix expression, or 2 to test 5 pre-made cases:"<<endl;
+	cin>>option;
+
+	if(option==1)
+	{
+		cout<<"Please input a postfix expression with a max size of 10 characters (operands, operators):"<<endl;
+		cin>>postfixExpression;
+		evaluatePostfix(postfixExpression);
+	}
+	else
+	{
+		char expression[25];
+		cout<<"Begin testing with 5 cases..."<<endl;
+
+		cout<<"Testing infix expression (3+4)*(5/2), or postfix 34+52/* (Answer should be 17.5): "<<endl;
+		strcpy(expression, "34+52/*");
+		evaluatePostfix(expression);
+
+		cout<<"Testing infix expression (5+6)*(4/3), or postfix 56+43/* (Answer should be 14.6667): "<<endl;
+		strcpy(expression, "56+43/*");
+		evaluatePostfix(expression);
+
+		cout<<"Testing infix expression (2+3)^2, or postfix 23+2^ (Answer should be 25): "<<endl;
+		strcpy(expression, "23+2^");
+		evaluatePostfix(expression);
+
+		cout<<"Testing infix expression ((5+7)*(8+4))-4, or postfix 57+84+*4- (Answer should be 140): "<<endl;
+		strcpy(expression, "57+84+*4-");
+		evaluatePostfix(expression);
+
+		cout<<"Testing infix expression ((3+2)-(2+0))^3, or postfix 32+20+-3^ (Answer should be 27): "<<endl;
+		strcpy(expression, "32+20+-3^");
+		evaluatePostfix(expression);
+
+		cout<<"END TESTING"<<endl;
+
+	}
 	
 return 0;
 
