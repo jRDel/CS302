@@ -1,0 +1,72 @@
+Below is the output from running operations with my StackLinked implementation, as required by the Canvas assignment page. Output of postfix.cpp and delimiters.cpp is in my documentation.
+
+Testing linked implementation
+
+Commands:
+  H  : Help (displays this message)
+  +x : Push x
+  -  : Pop
+  C  : Clear
+  E  : Empty stack?
+  F  : Full stack?
+  Q  : Quit the test program
+
+Empty stack
+
+Command: +e
+Push e
+Top     [e]     Bottom
+
+Command: +d
+Push d
+Top     [d]     e       Bottom
+
+Command: E
+Stack is NOT empty
+Top     [d]     e       Bottom
+
+Command: F
+Stack is NOT full
+Top     [d]     e       Bottom
+
+Command: -
+Popped d
+Top     [e]     Bottom
+
+Command: C
+Clear the stack
+Empty stack
+
+Command: E
+Stack is empty
+Empty stack
+
+Command: F
+Stack is NOT full
+Empty stack
+
+Command: +t
+Push t
+Top     [t]     Bottom
+
+Command: +f
+Push f
+Top     [f]     t       Bottom
+
+Command: +'
+Push '
+Top     [']     f       t       Bottom
+
+Command: E
+Stack is NOT empty
+Top     [']     f       t       Bottom
+
+Command: F
+Stack is NOT full
+Top     [']     f       t       Bottom
+
+Command: C
+Clear the stack
+Empty stack
+
+Command: Q

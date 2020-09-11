@@ -8,7 +8,7 @@ template<typename DataType>
 StackLinked<DataType>::StackLinked(int maxNumber) : top(nullptr)
 {
 
-DataType dataItem=NULL;
+//DataType dataItem=NULL;
 
 	/*for(int i=0; i<maxNumber; i++) //don't need to actually make anything with this constructor because it should be empty anyways.
 	{

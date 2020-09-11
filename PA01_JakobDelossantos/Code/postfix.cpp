@@ -18,7 +18,7 @@ void evaluatePostfix(char postfixExpression[])
 	float operand2;
 	float result;
 
-	for(int i=0; i<strlen(postfixExpression); i++)
+	for(unsigned int i=0; i<strlen(postfixExpression); i++)
 	{
 		
 		character=postfixExpression[i];
