@@ -5,7 +5,7 @@
 #include "Stack.h"
 
 template<typename DataType>
-StackArray<DataType>::StackArray(int maxNumber) : top(-1) //param ctor; creates an empty stack; does not need to allocate because is array implementation
+StackArray<DataType>::StackArray(int maxNumber) : top(-1) //param ctor; creates an empty stack; 
 {
 
 	if(maxNumber>0)
