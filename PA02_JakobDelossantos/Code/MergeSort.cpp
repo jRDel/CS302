@@ -6,7 +6,8 @@
 template<typename ItemType>
 MergeSort<ItemType>::MergeSort(ItemType theArray[], int first, int last)
 {
-    //mergeSort(theArray, first, last);
+    sortedArray = new ItemType[last];
+    originalSize=last;
 }
 
 template<typename ItemType>
@@ -19,6 +20,14 @@ void MergeSort<ItemType>::mergeSort(ItemType theArray[], int first, int last)
         mergeSort(theArray, mid+1, last);
         merge(theArray, first, mid, last);
     }
+    /*else
+    {
+        for(int i=0; i<originalSize; i++)
+        {
+            sortedArray[i]=theArray[i];
+        }
+    }*/
+    
 }
 
 template<typename ItemType>
@@ -80,4 +89,10 @@ template<typename ItemType>
 unsigned long int MergeSort<ItemType>::getSwaps()
 {
     return swaps;
+}
+
+template<typename ItemType>
+ItemType * MergeSort<ItemType>::getSorted()
+{
+    return sortedArray;
 }

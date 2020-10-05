@@ -17,11 +17,6 @@ int smallArray[1000];
 int mediumArray[10000];
 int largeArray[100000];
 
-//sorted arrays for case 2
-int smallArraySorted[1000];
-int mediumArraySorted[10000];
-int largeArraySorted[100000];
-
 //Populate the arrays with random numbers...
     srand(time(0)); //seeding the rand() function
     for(int i=0; i<1000; i++) //for smallArray
@@ -57,7 +52,11 @@ while(sorts<10)
     swapsSmall=swapsSmall+smallTest.getSwaps();
     comparisonsSmall=comparisonsSmall+smallTest.getComparisons();   
     sorts++;
+    
 }
+    //getting the sorted array
+    int * smallSorted = smallTest.getSorted();
+
 sorts=0;  
 end = std::chrono::system_clock::now();
 std::chrono::duration<double> elapsed_seconds1 = end-start;
@@ -70,6 +69,9 @@ while(sorts<10)
     comparisonsMedium=comparisonsMedium+mediumTest.getComparisons();
     sorts++;
 }
+    //getting the sorted array
+    int * mediumSorted = mediumTest.getSorted();
+
 sorts=0;  
 end = std::chrono::system_clock::now();
 std::chrono::duration<double> elapsed_seconds2 = end-start;
@@ -82,8 +84,14 @@ while(sorts<10)
     comparisonsLarge=comparisonsLarge+largeTest.getComparisons();
     sorts++;
 }
+
+    //getting the sorted array
+    int * largeSorted = largeTest.getSorted();
+
+sorts=0;
 end = std::chrono::system_clock::now();
 std::chrono::duration<double> elapsed_seconds3 = end-start;
+
 
 swapsSmall=swapsSmall/10;
 swapsMedium=swapsMedium/10;
@@ -108,20 +116,89 @@ cout<<"The average time for the medium array in seconds was: "<<elapsed_seconds2
 cout<<"The average number of swaps for large array was: "<<swapsLarge<<endl;
 cout<<"The average number of comparisons for large array was: "<<comparisonsLarge<<endl;
 cout<<"The average time for the large array in seconds was: "<<elapsed_seconds3.count()<<endl;
+
+cout<<"Now testing the selection sort and taking the average of 10 sorts on an sorted array..."<<endl;
+
+swapsSmall=0; //resetting the counter variables
+swapsMedium=0;
+swapsLarge=0;
+comparisonsSmall=0;
+comparisonsMedium=0;
+comparisonsLarge=0;
+
+start = std::chrono::system_clock::now();
+while(sorts<10)
+{
+    smallTest.selectionSort(smallSorted, 1000);
+    swapsSmall=swapsSmall+smallTest.getSwaps();
+    comparisonsSmall=comparisonsSmall+smallTest.getComparisons();   
+    sorts++;
+}
+
+sorts=0;  
+end = std::chrono::system_clock::now();
+std::chrono::duration<double> elapsed_seconds4 = end-start;
+
+start = std::chrono::system_clock::now();
+while(sorts<10)
+{
+    mediumTest.selectionSort(mediumSorted, 10000);
+    swapsMedium=swapsMedium+mediumTest.getSwaps();
+    comparisonsMedium=comparisonsMedium+mediumTest.getComparisons();
+    sorts++;
+}
+
+sorts=0;  
+end = std::chrono::system_clock::now();
+std::chrono::duration<double> elapsed_seconds5 = end-start;
+
+start = std::chrono::system_clock::now();
+while(sorts<10)
+{
+    largeTest.selectionSort(largeSorted, 100000);
+    swapsLarge=swapsLarge+largeTest.getSwaps();
+    comparisonsLarge=comparisonsLarge+largeTest.getComparisons();
+    sorts++;
+}
+
+end = std::chrono::system_clock::now();
+std::chrono::duration<double> elapsed_seconds6 = end-start;
+
+
+swapsSmall=swapsSmall/10;
+swapsMedium=swapsMedium/10;
+swapsLarge=swapsLarge/10;
+
+comparisonsSmall=comparisonsSmall/10;
+comparisonsMedium=comparisonsMedium/10;
+comparisonsLarge=comparisonsLarge/10;
+
+elapsed_seconds4/=10;
+elapsed_seconds5/=10;
+elapsed_seconds6/=10;
+
+cout<<"The average number of swaps for small array was: "<<swapsSmall<<endl;
+cout<<"The average number of comparisons for small array was: "<<comparisonsSmall<<endl;
+cout<<"The average time for the small array in seconds was: "<<elapsed_seconds4.count()<<endl;
+
+cout<<"The average number of swaps for medium array was: "<<swapsMedium<<endl;
+cout<<"The average number of comparisons for medium array was: "<<comparisonsMedium<<endl;
+cout<<"The average time for the medium array in seconds was: "<<elapsed_seconds5.count()<<endl;
+
+cout<<"The average number of swaps for large array was: "<<swapsLarge<<endl;
+cout<<"The average number of comparisons for large array was: "<<comparisonsLarge<<endl;
+cout<<"The average time for the large array in seconds was: "<<elapsed_seconds6.count()<<endl;
+
 }
 
 void testMerge(){
-    //unsorted arrays for case 1
+
+//unsorted arrays for case 1
 int smallArray[1000];
 int mediumArray[10000];
 int largeArray[100000];
 
-//sorted arrays for case 2
-int smallArraySorted[1000];
-int mediumArraySorted[10000];
-int largeArraySorted[100000];
-
-//Populate the arrays with random numbers...
+    //Populate the arrays with random numbers...
     srand(time(0)); //seeding the rand() function
     for(int i=0; i<1000; i++) //for smallArray
     {
@@ -143,7 +220,7 @@ int sorts = 0;
 unsigned long int swapsSmall, swapsMedium, swapsLarge=0;
 unsigned long int comparisonsSmall, comparisonsMedium, comparisonsLarge=0;
 
-cout<<"Now testing the selection sort and taking the average of 10 sorts on an originally unsorted array..."<<endl;
+cout<<"Now testing the merge sort and taking the average of 10 sorts on an originally unsorted array..."<<endl;
 MergeSort<int> smallTest(smallArray, 0, 1000);
 MergeSort<int> mediumTest(mediumArray, 0, 10000);
 MergeSort<int> largeTest(largeArray, 0, 100000);
@@ -161,6 +238,7 @@ while(sorts<10)
 sorts=0;  
 end = std::chrono::system_clock::now();
 std::chrono::duration<double> elapsed_seconds1 = end-start;
+int * smallSorted = smallTest.getSorted();
 
 start = std::chrono::system_clock::now();
 while(sorts<10)
@@ -173,6 +251,7 @@ while(sorts<10)
 sorts=0;  
 end = std::chrono::system_clock::now();
 std::chrono::duration<double> elapsed_seconds2 = end-start;
+int * mediumSorted = mediumTest.getSorted();
 
 start = std::chrono::system_clock::now();
 while(sorts<10)
@@ -182,8 +261,10 @@ while(sorts<10)
     comparisonsLarge=comparisonsLarge+largeTest.getComparisons();
     sorts++;
 }
+sorts=0;
 end = std::chrono::system_clock::now();
 std::chrono::duration<double> elapsed_seconds3 = end-start;
+int * largeSorted = largeTest.getSorted();
 
 swapsSmall=swapsSmall/10;
 swapsMedium=swapsMedium/10;
@@ -208,6 +289,76 @@ cout<<"The average time for the medium array in seconds was: "<<elapsed_seconds2
 cout<<"The average number of swaps for large array was: "<<swapsLarge<<endl;
 cout<<"The average number of comparisons for large array was: "<<comparisonsLarge<<endl;
 cout<<"The average time for the large array in seconds was: "<<elapsed_seconds3.count()<<endl;
+
+cout<<"Now testing the merge sort and taking the average of 10 sorts on a sorted array..."<<endl;
+
+swapsSmall=0; //resetting the counter variables
+swapsMedium=0;
+swapsLarge=0;
+comparisonsSmall=0;
+comparisonsMedium=0;
+comparisonsLarge=0;
+
+start = std::chrono::system_clock::now();
+while(sorts<10)
+{
+    smallTest.mergeSort(smallSorted, 0, 1000);
+    swapsSmall=swapsSmall+smallTest.getSwaps();
+    comparisonsSmall=comparisonsSmall+smallTest.getComparisons();   
+    sorts++;
+}
+sorts=0;  
+end = std::chrono::system_clock::now();
+std::chrono::duration<double> elapsed_seconds4 = end-start;
+
+start = std::chrono::system_clock::now();
+while(sorts<10)
+{
+    mediumTest.mergeSort(mediumSorted, 0, 10000);
+    swapsMedium=swapsMedium+mediumTest.getSwaps();
+    comparisonsMedium=comparisonsMedium+mediumTest.getComparisons();
+    sorts++;
+}
+sorts=0;  
+end = std::chrono::system_clock::now();
+std::chrono::duration<double> elapsed_seconds5 = end-start;
+
+start = std::chrono::system_clock::now();
+while(sorts<10)
+{
+    largeTest.mergeSort(largeSorted, 0, 100000);
+    swapsLarge=swapsLarge+largeTest.getSwaps();
+    comparisonsLarge=comparisonsLarge+largeTest.getComparisons();
+    sorts++;
+}
+end = std::chrono::system_clock::now();
+std::chrono::duration<double> elapsed_seconds6 = end-start;
+
+swapsSmall=swapsSmall/10;
+swapsMedium=swapsMedium/10;
+swapsLarge=swapsLarge/10;
+
+comparisonsSmall/=10;
+comparisonsMedium/=10;
+comparisonsLarge/=10;
+
+elapsed_seconds4/=10;
+elapsed_seconds5/=10;
+elapsed_seconds6/=10;
+
+cout<<"The average number of swaps for small array was: "<<swapsSmall<<endl;
+cout<<"The average number of comparisons for small array was: "<<comparisonsSmall<<endl;
+cout<<"The average time for the small array in seconds was: "<<elapsed_seconds4.count()<<endl;
+
+cout<<"The average number of swaps for medium array was: "<<swapsMedium<<endl;
+cout<<"The average number of comparisons for medium array was: "<<comparisonsMedium<<endl;
+cout<<"The average time for the medium array in seconds was: "<<elapsed_seconds5.count()<<endl;
+
+cout<<"The average number of swaps for large array was: "<<swapsLarge<<endl;
+cout<<"The average number of comparisons for large array was: "<<comparisonsLarge<<endl;
+cout<<"The average time for the large array in seconds was: "<<elapsed_seconds6.count()<<endl;
+
+
 }
 
 
@@ -241,10 +392,6 @@ while(go==true)
     }   
 
 }
-
-
-
-
 
 return 0;
 

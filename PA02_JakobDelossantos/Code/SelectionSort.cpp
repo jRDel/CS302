@@ -10,7 +10,13 @@ using namespace std::chrono;
 template<typename ItemType>
 SelectionSort<ItemType>::SelectionSort(ItemType theArray[], int n)
 {
-    //selectionSort(theArray, n);
+    sortedArray = new ItemType[n];
+}
+
+template<typename ItemType>
+SelectionSort<ItemType>::~SelectionSort()
+{
+    delete sortedArray;
 }
 
 template<typename ItemType>
@@ -22,6 +28,13 @@ void SelectionSort<ItemType>::selectionSort(ItemType theArray[], int n)
         std::swap(theArray[largest], theArray[last]);
         swaps++;
     }
+
+    //copying the sorted array to return for case two
+    for(int i=0; i<n; i++)
+    {
+        sortedArray[i]=theArray[i];
+    }
+
 }
 template<typename ItemType>
 int SelectionSort<ItemType>::findIndexOfLargest(const ItemType theArray[], int size)
@@ -51,8 +64,9 @@ unsigned long int SelectionSort<ItemType>::getSwaps()
     return swaps;
 }
 
-/*template<typename ItemType>
-std::chrono::time_point<std::chrono::system_clock> SelectionSort<ItemType>::getTime()
+template<typename ItemType>
+ItemType * SelectionSort<ItemType>::getSorted()
 {
-    return time;    
-}*/
+    return sortedArray;
+}
+

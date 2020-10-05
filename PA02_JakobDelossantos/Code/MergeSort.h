@@ -14,9 +14,13 @@ class MergeSort {
         void merge(ItemType theArray[], int first, int mid, int last);
         unsigned long int getComparisons();
         unsigned long int getSwaps();
+        ItemType * getSorted();
+
     private:
         unsigned long int comparisons=0;
         unsigned long int swaps=0;
+        unsigned long int originalSize=0;
+        ItemType * sortedArray;
 };
 
 #endif 
