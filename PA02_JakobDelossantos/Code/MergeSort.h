@@ -10,6 +10,7 @@ template <typename ItemType>
 class MergeSort {
     public:
         MergeSort(ItemType theArray[], int first, int last);
+        ~MergeSort();
         void mergeSort(ItemType theArray[], int first, int last);
         void merge(ItemType theArray[], int first, int mid, int last);
         unsigned long int getComparisons();

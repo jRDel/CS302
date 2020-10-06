@@ -52,7 +52,6 @@ while(sorts<10)
     swapsSmall=swapsSmall+smallTest.getSwaps();
     comparisonsSmall=comparisonsSmall+smallTest.getComparisons();   
     sorts++;
-    
 }
     //getting the sorted array
     int * smallSorted = smallTest.getSorted();
@@ -71,7 +70,6 @@ while(sorts<10)
 }
     //getting the sorted array
     int * mediumSorted = mediumTest.getSorted();
-
 sorts=0;  
 end = std::chrono::system_clock::now();
 std::chrono::duration<double> elapsed_seconds2 = end-start;
@@ -194,15 +192,16 @@ cout<<"The average time for the large array in seconds was: "<<elapsed_seconds6.
 void testMerge(){
 
 //unsorted arrays for case 1
-int smallArray[1000];
-int mediumArray[10000];
-int largeArray[100000];
+int smallArray[1000], copySmall[1000];
+int mediumArray[10000], copyMedium[10000];
+int largeArray[100000], copyLarge[100000];
 
     //Populate the arrays with random numbers...
     srand(time(0)); //seeding the rand() function
     for(int i=0; i<1000; i++) //for smallArray
     {
         smallArray[i]= rand() % 1000000;
+        copySmall[i]=smallArray[i];
     }
 
     for(int i=0; i<10000; i++) //for mediumArray
@@ -230,7 +229,11 @@ std::chrono::time_point<std::chrono::system_clock> start, end;
 start = std::chrono::system_clock::now();
 while(sorts<10)
 {
-    smallTest.mergeSort(smallArray, 0, 1000);
+    for(int i=0; i<1000; i++) //for smallArray
+    {
+        copySmall[i]=smallArray[i];
+    }
+    smallTest.mergeSort(copySmall, 0, 1000);
     swapsSmall=swapsSmall+smallTest.getSwaps();
     comparisonsSmall=comparisonsSmall+smallTest.getComparisons();   
     sorts++;
@@ -243,7 +246,11 @@ int * smallSorted = smallTest.getSorted();
 start = std::chrono::system_clock::now();
 while(sorts<10)
 {
-    mediumTest.mergeSort(mediumArray, 0, 10000);
+    for(int i=0; i<1000; i++) //for smallArray
+    {
+        copyMedium[i]=mediumArray[i];
+    }
+    mediumTest.mergeSort(copyMedium, 0, 10000);
     swapsMedium=swapsMedium+mediumTest.getSwaps();
     comparisonsMedium=comparisonsMedium+mediumTest.getComparisons();
     sorts++;
@@ -256,7 +263,11 @@ int * mediumSorted = mediumTest.getSorted();
 start = std::chrono::system_clock::now();
 while(sorts<10)
 {
-    largeTest.mergeSort(largeArray, 0, 100000);
+    for(int i=0; i<1000; i++) //for smallArray
+    {
+        copyLarge[i]=largeArray[i];
+    }
+    largeTest.mergeSort(copyLarge, 0, 100000);
     swapsLarge=swapsLarge+largeTest.getSwaps();
     comparisonsLarge=comparisonsLarge+largeTest.getComparisons();
     sorts++;

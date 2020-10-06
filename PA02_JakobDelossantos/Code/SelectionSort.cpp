@@ -11,28 +11,29 @@ template<typename ItemType>
 SelectionSort<ItemType>::SelectionSort(ItemType theArray[], int n)
 {
     sortedArray = new ItemType[n];
+    for(int i=0; i<n;i++)
+    {
+        sortedArray[i]=theArray[i];
+    }
+
 }
 
 template<typename ItemType>
 SelectionSort<ItemType>::~SelectionSort()
 {
-    delete sortedArray;
+    delete [] sortedArray;
 }
 
 template<typename ItemType>
 void SelectionSort<ItemType>::selectionSort(ItemType theArray[], int n)
 {
+    swaps=0;
+    comparisons=0;
     for(int last=n-1; last>=1; last--)
     {
-        int largest = findIndexOfLargest(theArray, last+1);
-        std::swap(theArray[largest], theArray[last]);
+        int largest = findIndexOfLargest(sortedArray, last+1);
+        std::swap(sortedArray[largest], sortedArray[last]);
         swaps++;
-    }
-
-    //copying the sorted array to return for case two
-    for(int i=0; i<n; i++)
-    {
-        sortedArray[i]=theArray[i];
     }
 
 }
@@ -42,7 +43,7 @@ int SelectionSort<ItemType>::findIndexOfLargest(const ItemType theArray[], int s
     int indexSoFar = 0;
     for(int currentIndex = 1; currentIndex < size; currentIndex++)
     {
-        if(theArray[currentIndex] > theArray[indexSoFar])
+        if(sortedArray[currentIndex] > sortedArray[indexSoFar])
         {
             indexSoFar = currentIndex;
         }
