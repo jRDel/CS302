@@ -52,8 +52,8 @@ while(sorts<10)
         copySmall[i]=smallArray[i];
     }*/
     smallTest.selectionSort(smallArray, 1000);
-    swapsSmall=smallTest.getSwaps();
-    comparisonsSmall=smallTest.getComparisons();   
+    swapsSmall=swapsSmall+smallTest.getSwaps();
+    comparisonsSmall=comparisonsSmall+smallTest.getComparisons();   
     sorts++;
 }
     //getting the sorted array
@@ -71,8 +71,8 @@ while(sorts<10)
         copyMedium[i]=mediumArray[i];
     }*/
     mediumTest.selectionSort(mediumArray, 10000);
-    swapsMedium=mediumTest.getSwaps();
-    comparisonsMedium=mediumTest.getComparisons();
+    swapsMedium=swapsMedium+mediumTest.getSwaps();
+    comparisonsMedium=comparisonsMedium+mediumTest.getComparisons();
     sorts++;
 }
     //getting the sorted array
@@ -89,8 +89,8 @@ while(sorts<10)
         copyLarge[i]=largeArray[i];
     }*/
     largeTest.selectionSort(largeArray, 100000);
-    swapsLarge=largeTest.getSwaps();
-    comparisonsLarge=largeTest.getComparisons();
+    swapsLarge=swapsLarge+largeTest.getSwaps();
+    comparisonsLarge=comparisonsLarge+largeTest.getComparisons();
     sorts++;
 }
 
@@ -140,8 +140,8 @@ start = std::chrono::system_clock::now();
 while(sorts<10)
 {
     smallTest.selectionSort(smallSorted, 1000);
-    swapsSmall=smallTest.getSwaps();
-    comparisonsSmall=smallTest.getComparisons();   
+    swapsSmall=swapsSmall+smallTest.getSwaps();
+    comparisonsSmall=comparisonsSmall+smallTest.getComparisons();   
     sorts++;
 }
 
@@ -153,8 +153,8 @@ start = std::chrono::system_clock::now();
 while(sorts<10)
 {
     mediumTest.selectionSort(mediumSorted, 10000);
-    swapsMedium=mediumTest.getSwaps();
-    comparisonsMedium=mediumTest.getComparisons();
+    swapsMedium=swapsMedium+mediumTest.getSwaps();
+    comparisonsMedium=comparisonsMedium+mediumTest.getComparisons();
     sorts++;
 }
 
@@ -166,8 +166,8 @@ start = std::chrono::system_clock::now();
 while(sorts<10)
 {
     largeTest.selectionSort(largeSorted, 100000);
-    swapsLarge=largeTest.getSwaps();
-    comparisonsLarge=largeTest.getComparisons();
+    swapsLarge=swapsLarge+largeTest.getSwaps();
+    comparisonsLarge=comparisonsLarge+largeTest.getComparisons();
     sorts++;
 }
 
@@ -252,8 +252,8 @@ while(sorts<10)
         copySmall[i]=smallArray[i];
     }
     smallTest.mergeSort(copySmall, 0, 1000);
-    swapsSmall=smallTest.getSwaps();
-    comparisonsSmall=smallTest.getComparisons();   
+    swapsSmall=swapsSmall+smallTest.getSwaps();
+    comparisonsSmall=comparisonsSmall+smallTest.getComparisons();   
     sorts++;
 }
 sorts=0;  
@@ -269,8 +269,8 @@ while(sorts<10)
         copyMedium[i]=mediumArray[i];
     }
     mediumTest.mergeSort(copyMedium, 0, 10000);
-    swapsMedium=mediumTest.getSwaps();
-    comparisonsMedium=mediumTest.getComparisons();
+    swapsMedium=swapsMedium+mediumTest.getSwaps();
+    comparisonsMedium=comparisonsMedium+mediumTest.getComparisons();
     sorts++;
 }
 sorts=0;  
@@ -286,8 +286,8 @@ while(sorts<10)
         copyLarge[i]=largeArray[i];
     }
     largeTest.mergeSort(copyLarge, 0, 100000);
-    swapsLarge=largeTest.getSwaps();
-    comparisonsLarge=largeTest.getComparisons();
+    swapsLarge=swapsLarge+largeTest.getSwaps();
+    comparisonsLarge=comparisonsLarge+largeTest.getComparisons();
     sorts++;
 }
 sorts=0;
@@ -332,8 +332,8 @@ start = std::chrono::system_clock::now();
 while(sorts<10)
 {
     smallTest.mergeSort(smallSorted, 0, 1000);
-    swapsSmall=smallTest.getSwaps();
-    comparisonsSmall=smallTest.getComparisons();   
+    swapsSmall=swapsSmall+smallTest.getSwaps();
+    comparisonsSmall=comparisonsSmall+smallTest.getComparisons();   
     sorts++;
 }
 sorts=0;  
@@ -344,8 +344,8 @@ start = std::chrono::system_clock::now();
 while(sorts<10)
 {
     mediumTest.mergeSort(mediumSorted, 0, 10000);
-    swapsMedium=mediumTest.getSwaps();
-    comparisonsMedium=mediumTest.getComparisons();
+    swapsMedium=swapsMedium+mediumTest.getSwaps();
+    comparisonsMedium=comparisonsMedium+mediumTest.getComparisons();
     sorts++;
 }
 sorts=0;  
@@ -356,8 +356,8 @@ start = std::chrono::system_clock::now();
 while(sorts<10)
 {
     largeTest.mergeSort(largeSorted, 0, 100000);
-    swapsLarge=largeTest.getSwaps();
-    comparisonsLarge=largeTest.getComparisons();
+    swapsLarge=swapsLarge+largeTest.getSwaps();
+    comparisonsLarge=comparisonsLarge+largeTest.getComparisons();
     sorts++;
 }
 end = std::chrono::system_clock::now();

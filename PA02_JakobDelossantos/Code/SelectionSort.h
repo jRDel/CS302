@@ -16,8 +16,8 @@ class SelectionSort {
         ~SelectionSort();
         void selectionSort(ItemType theArray[], int n);
         int findIndexOfLargest(const ItemType theArray[], int size);
-        unsigned long int getComparisons() const;
-        unsigned long int getSwaps() const;
+        unsigned long int getComparisons();
+        unsigned long int getSwaps();
         ItemType * getSorted();
 
     private:

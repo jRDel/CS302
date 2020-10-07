@@ -83,7 +83,6 @@ void MergeSort<ItemType>::merge(ItemType theArray[], int first, int mid, int las
     {
         theArray[index] = tempArray[index];
         sortedArray[index] = tempArray[index];
-        swaps++;
     }
 
 }
@@ -103,5 +102,7 @@ unsigned long int MergeSort<ItemType>::getSwaps()
 template<typename ItemType>
 ItemType * MergeSort<ItemType>::getSorted()
 {
+    swaps=0;
+    comparisons=0;
     return sortedArray;
 }
