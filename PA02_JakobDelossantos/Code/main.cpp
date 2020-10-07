@@ -44,18 +44,21 @@ SelectionSort<int> mediumTest(mediumArray, 10000);
 SelectionSort<int> largeTest(largeArray, 100000);
 
 std::chrono::time_point<std::chrono::system_clock> start, end;
-
 start = std::chrono::system_clock::now();
 while(sorts<10)
 {
+    /*for(int i=0;i<1000; i++)
+    {
+        copySmall[i]=smallArray[i];
+    }*/
     smallTest.selectionSort(smallArray, 1000);
-    swapsSmall=swapsSmall+smallTest.getSwaps();
-    comparisonsSmall=comparisonsSmall+smallTest.getComparisons();   
+    swapsSmall=smallTest.getSwaps();
+    comparisonsSmall=smallTest.getComparisons();   
     sorts++;
 }
     //getting the sorted array
     int * smallSorted = smallTest.getSorted();
-
+  
 sorts=0;  
 end = std::chrono::system_clock::now();
 std::chrono::duration<double> elapsed_seconds1 = end-start;
@@ -63,9 +66,13 @@ std::chrono::duration<double> elapsed_seconds1 = end-start;
 start = std::chrono::system_clock::now();
 while(sorts<10)
 {
+    /*for(int i=0;i<10000; i++)
+    {
+        copyMedium[i]=mediumArray[i];
+    }*/
     mediumTest.selectionSort(mediumArray, 10000);
-    swapsMedium=swapsMedium+mediumTest.getSwaps();
-    comparisonsMedium=comparisonsMedium+mediumTest.getComparisons();
+    swapsMedium=mediumTest.getSwaps();
+    comparisonsMedium=mediumTest.getComparisons();
     sorts++;
 }
     //getting the sorted array
@@ -77,9 +84,13 @@ std::chrono::duration<double> elapsed_seconds2 = end-start;
 start = std::chrono::system_clock::now();
 while(sorts<10)
 {
+    /*for(int i=0;i<100000; i++)
+    {
+        copyLarge[i]=largeArray[i];
+    }*/
     largeTest.selectionSort(largeArray, 100000);
-    swapsLarge=swapsLarge+largeTest.getSwaps();
-    comparisonsLarge=comparisonsLarge+largeTest.getComparisons();
+    swapsLarge=largeTest.getSwaps();
+    comparisonsLarge=largeTest.getComparisons();
     sorts++;
 }
 
@@ -114,6 +125,7 @@ cout<<"The average time for the medium array in seconds was: "<<elapsed_seconds2
 cout<<"The average number of swaps for large array was: "<<swapsLarge<<endl;
 cout<<"The average number of comparisons for large array was: "<<comparisonsLarge<<endl;
 cout<<"The average time for the large array in seconds was: "<<elapsed_seconds3.count()<<endl;
+cout<<"-------------------------------------------------------------------------------------"<<endl;
 
 cout<<"Now testing the selection sort and taking the average of 10 sorts on an sorted array..."<<endl;
 
@@ -128,8 +140,8 @@ start = std::chrono::system_clock::now();
 while(sorts<10)
 {
     smallTest.selectionSort(smallSorted, 1000);
-    swapsSmall=swapsSmall+smallTest.getSwaps();
-    comparisonsSmall=comparisonsSmall+smallTest.getComparisons();   
+    swapsSmall=smallTest.getSwaps();
+    comparisonsSmall=smallTest.getComparisons();   
     sorts++;
 }
 
@@ -141,8 +153,8 @@ start = std::chrono::system_clock::now();
 while(sorts<10)
 {
     mediumTest.selectionSort(mediumSorted, 10000);
-    swapsMedium=swapsMedium+mediumTest.getSwaps();
-    comparisonsMedium=comparisonsMedium+mediumTest.getComparisons();
+    swapsMedium=mediumTest.getSwaps();
+    comparisonsMedium=mediumTest.getComparisons();
     sorts++;
 }
 
@@ -154,8 +166,8 @@ start = std::chrono::system_clock::now();
 while(sorts<10)
 {
     largeTest.selectionSort(largeSorted, 100000);
-    swapsLarge=swapsLarge+largeTest.getSwaps();
-    comparisonsLarge=comparisonsLarge+largeTest.getComparisons();
+    swapsLarge=largeTest.getSwaps();
+    comparisonsLarge=largeTest.getComparisons();
     sorts++;
 }
 
@@ -186,6 +198,13 @@ cout<<"The average time for the medium array in seconds was: "<<elapsed_seconds5
 cout<<"The average number of swaps for large array was: "<<swapsLarge<<endl;
 cout<<"The average number of comparisons for large array was: "<<comparisonsLarge<<endl;
 cout<<"The average time for the large array in seconds was: "<<elapsed_seconds6.count()<<endl;
+cout<<"-------------------------------------------------------------------------------------"<<endl;
+swapsSmall=0; //resetting the counter variables
+swapsMedium=0;
+swapsLarge=0;
+comparisonsSmall=0;
+comparisonsMedium=0;
+comparisonsLarge=0;
 
 }
 
@@ -201,7 +220,6 @@ int largeArray[100000], copyLarge[100000];
     for(int i=0; i<1000; i++) //for smallArray
     {
         smallArray[i]= rand() % 1000000;
-        copySmall[i]=smallArray[i];
     }
 
     for(int i=0; i<10000; i++) //for mediumArray
@@ -234,8 +252,8 @@ while(sorts<10)
         copySmall[i]=smallArray[i];
     }
     smallTest.mergeSort(copySmall, 0, 1000);
-    swapsSmall=swapsSmall+smallTest.getSwaps();
-    comparisonsSmall=comparisonsSmall+smallTest.getComparisons();   
+    swapsSmall=smallTest.getSwaps();
+    comparisonsSmall=smallTest.getComparisons();   
     sorts++;
 }
 sorts=0;  
@@ -246,13 +264,13 @@ int * smallSorted = smallTest.getSorted();
 start = std::chrono::system_clock::now();
 while(sorts<10)
 {
-    for(int i=0; i<1000; i++) //for smallArray
+    for(int i=0; i<10000; i++) //for smallArray
     {
         copyMedium[i]=mediumArray[i];
     }
     mediumTest.mergeSort(copyMedium, 0, 10000);
-    swapsMedium=swapsMedium+mediumTest.getSwaps();
-    comparisonsMedium=comparisonsMedium+mediumTest.getComparisons();
+    swapsMedium=mediumTest.getSwaps();
+    comparisonsMedium=mediumTest.getComparisons();
     sorts++;
 }
 sorts=0;  
@@ -263,13 +281,13 @@ int * mediumSorted = mediumTest.getSorted();
 start = std::chrono::system_clock::now();
 while(sorts<10)
 {
-    for(int i=0; i<1000; i++) //for smallArray
+    for(int i=0; i<100000; i++) //for smallArray
     {
         copyLarge[i]=largeArray[i];
     }
     largeTest.mergeSort(copyLarge, 0, 100000);
-    swapsLarge=swapsLarge+largeTest.getSwaps();
-    comparisonsLarge=comparisonsLarge+largeTest.getComparisons();
+    swapsLarge=largeTest.getSwaps();
+    comparisonsLarge=largeTest.getComparisons();
     sorts++;
 }
 sorts=0;
@@ -300,7 +318,7 @@ cout<<"The average time for the medium array in seconds was: "<<elapsed_seconds2
 cout<<"The average number of swaps for large array was: "<<swapsLarge<<endl;
 cout<<"The average number of comparisons for large array was: "<<comparisonsLarge<<endl;
 cout<<"The average time for the large array in seconds was: "<<elapsed_seconds3.count()<<endl;
-
+cout<<"-------------------------------------------------------------------------------------"<<endl;
 cout<<"Now testing the merge sort and taking the average of 10 sorts on a sorted array..."<<endl;
 
 swapsSmall=0; //resetting the counter variables
@@ -314,8 +332,8 @@ start = std::chrono::system_clock::now();
 while(sorts<10)
 {
     smallTest.mergeSort(smallSorted, 0, 1000);
-    swapsSmall=swapsSmall+smallTest.getSwaps();
-    comparisonsSmall=comparisonsSmall+smallTest.getComparisons();   
+    swapsSmall=smallTest.getSwaps();
+    comparisonsSmall=smallTest.getComparisons();   
     sorts++;
 }
 sorts=0;  
@@ -326,8 +344,8 @@ start = std::chrono::system_clock::now();
 while(sorts<10)
 {
     mediumTest.mergeSort(mediumSorted, 0, 10000);
-    swapsMedium=swapsMedium+mediumTest.getSwaps();
-    comparisonsMedium=comparisonsMedium+mediumTest.getComparisons();
+    swapsMedium=mediumTest.getSwaps();
+    comparisonsMedium=mediumTest.getComparisons();
     sorts++;
 }
 sorts=0;  
@@ -338,8 +356,8 @@ start = std::chrono::system_clock::now();
 while(sorts<10)
 {
     largeTest.mergeSort(largeSorted, 0, 100000);
-    swapsLarge=swapsLarge+largeTest.getSwaps();
-    comparisonsLarge=comparisonsLarge+largeTest.getComparisons();
+    swapsLarge=largeTest.getSwaps();
+    comparisonsLarge=largeTest.getComparisons();
     sorts++;
 }
 end = std::chrono::system_clock::now();
@@ -368,6 +386,13 @@ cout<<"The average time for the medium array in seconds was: "<<elapsed_seconds5
 cout<<"The average number of swaps for large array was: "<<swapsLarge<<endl;
 cout<<"The average number of comparisons for large array was: "<<comparisonsLarge<<endl;
 cout<<"The average time for the large array in seconds was: "<<elapsed_seconds6.count()<<endl;
+cout<<"-------------------------------------------------------------------------------------"<<endl;
+swapsSmall=0; //resetting the counter variables
+swapsMedium=0;
+swapsLarge=0;
+comparisonsSmall=0;
+comparisonsMedium=0;
+comparisonsLarge=0;
 
 
 }

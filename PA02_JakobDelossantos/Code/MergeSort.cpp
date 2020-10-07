@@ -51,6 +51,7 @@ void MergeSort<ItemType>::merge(ItemType theArray[], int first, int mid, int las
         {
             tempArray[index] = theArray[first1];
             first1++;
+            swaps++;
         }
         else
         {
@@ -67,6 +68,7 @@ void MergeSort<ItemType>::merge(ItemType theArray[], int first, int mid, int las
         tempArray[index]=theArray[first1];
         first1++;
         index++;
+        swaps++;
     }
 
     while(first2<=last2)
@@ -74,12 +76,14 @@ void MergeSort<ItemType>::merge(ItemType theArray[], int first, int mid, int las
         tempArray[index] = theArray[first2];
         first2++;
         index++;
+        swaps++;
     }
 
     for(index=first; index<=last; index++)
     {
         theArray[index] = tempArray[index];
         sortedArray[index] = tempArray[index];
+        swaps++;
     }
 
 }
