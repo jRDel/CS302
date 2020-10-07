@@ -1,0 +1,54 @@
+#This is the output of running both sorts with my main driver.
+
+Hello. This program tests the average swaps, comparisons, and computing time of running two different sorts on arrays of random numbers of size 1000, 10000, and 100000.
+Please choose from the following options:
+(1) Test with Selection Sort
+(2) Test with Merge Sort
+(3) Exit the program
+Option:1
+Now testing the selection sort and taking the average of 10 sorts on an originally unsorted array...
+The average number of swaps for small array was: 999
+The average number of comparisons for small array was: 499500
+The average time for the small array in seconds was: 0.00117581
+The average number of swaps for medium array was: 9999
+The average number of comparisons for medium array was: 49995000
+The average time for the medium array in seconds was: 0.115644
+The average number of swaps for large array was: 99999
+The average number of comparisons for large array was: 4999950000
+The average time for the large array in seconds was: 12.9839
+-------------------------------------------------------------------------------------
+Now testing the selection sort and taking the average of 10 sorts on an sorted array...
+The average number of swaps for small array was: 999
+The average number of comparisons for small array was: 499500
+The average time for the small array in seconds was: 0.00122732
+The average number of swaps for medium array was: 9999
+The average number of comparisons for medium array was: 49995000
+The average time for the medium array in seconds was: 0.117931
+The average number of swaps for large array was: 99999
+The average number of comparisons for large array was: 4999950000
+The average time for the large array in seconds was: 13.3743
+-------------------------------------------------------------------------------------
+Option:2
+Now testing the merge sort and taking the average of 10 sorts on an originally unsorted array...
+The average number of swaps for small array was: 54928
+The average number of comparisons for small array was: 47926
+The average time for the small array in seconds was: 0.00011782
+The average number of swaps for medium array was: 734970
+The average number of comparisons for medium array was: 662501
+The average time for the medium array in seconds was: 0.00156249
+The average number of swaps for large array was: 9179203
+The average number of comparisons for large array was: 8449530
+The average time for the large array in seconds was: 0.0330241
+-------------------------------------------------------------------------------------
+Now testing the merge sort and taking the average of 10 sorts on a sorted array...
+The average number of swaps for small array was: 54928
+The average number of comparisons for small array was: 27769
+The average time for the small array in seconds was: 7.298e-05
+The average number of swaps for medium array was: 734970
+The average number of comparisons for medium array was: 379599
+The average time for the medium array in seconds was: 0.00093854
+The average number of swaps for large array was: 9179203
+The average number of comparisons for large array was: 4696538
+The average time for the large array in seconds was: 0.0258682
+-------------------------------------------------------------------------------------
+Option:3
