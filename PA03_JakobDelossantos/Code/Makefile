@@ -1,6 +1,6 @@
 TARGET = main
 HEADERS = BinaryNode.h BinaryNodeTree.h BinarySearchTree.h BinaryTreeInterface.h NotFoundException.h PrecondViolatedExcept.h
-SRCS = main.cpp BinarySearchTree.cpp NotFoundException.cpp PrecondViolatedExcept.cpp
+SRCS = main.cpp BinaryNode.cpp BinaryNodeTree.cpp BinarySearchTree.cpp NotFoundException.cpp PrecondViolatedExcept.cpp
 OBJECTS := $(patsubst %.cpp, %.o, $(SRCS))
 CXX = g++
 CXX_FLAGS = -Wall -std=c++11

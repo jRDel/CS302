@@ -3,7 +3,9 @@
 #include <stdexcept>
 #include "BinarySearchTree.h"
 #include "BinaryNodeTree.h"
+#include "BinaryNode.h"
 
+using namespace std;
 //------------------------------------------------------------
 // Protected Utility Methods Section:
 // Recursive helper methods for the public methods.
@@ -16,7 +18,7 @@ auto BinarySearchTree<ItemType>::placeNode(std::shared_ptr<BinaryNode<ItemType>>
 // Removes the given target value from the tree while maintaining a
 // binary search tree.
 template<typename ItemType>
-auto BinarySearchTree<ItemType>::removeValue(std::shared_ptr<BinaryNode<ItemType>> subTreePtr,const ItemType target, bool & isSuccessful) override{}
+auto BinarySearchTree<ItemType>::removeValue(std::shared_ptr<BinaryNode<ItemType>> subTreePtr,const ItemType target, bool & isSuccessful){}
 
 // Removes a given node from a tree while maintaining a binary search tree.
 template<typename ItemType>
@@ -77,7 +79,7 @@ template<typename ItemType>
 void BinarySearchTree<ItemType>::clear(){}
 
 template<typename ItemType>
-ItemType BinarySearchTree::getEntry(const ItemType& anEntry) const throw(NotFoundException){}
+ItemType BinarySearchTree<ItemType>::getEntry(const ItemType& anEntry) const throw(NotFoundException){}
 
 template<typename ItemType>
 bool BinarySearchTree<ItemType>::contains(const ItemType& anEntry) const{}
