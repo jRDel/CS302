@@ -17,7 +17,10 @@ class BinaryNodeTree : public BinaryTreeInterface<ItemType>
 
         auto balancedAdd(std::shared_ptr<BinaryNode<ItemType>> subTreePtr, std::shared_ptr<BinaryNode<ItemType>> newNodePtr);
         virtual std::shared_ptr<BinaryNode<ItemType>> removeValue(std::shared_ptr<BinaryNode<ItemType>> subTreePtr, const ItemType target, bool & isSuccessful) const;
- 
+
+        virtual std::shared_ptr<BinaryNode<ItemType>> findNode(std::shared_ptr<BinaryNode<ItemType>> oldTreeRootPtr, const ItemType& target) const;
+        std::shared_ptr<BinaryNode<ItemType>> moveValuesUpTree(std::shared_ptr<BinaryNode<ItemType>> subTreePtr);
+
         auto copyTree(const std::shared_ptr<BinaryNode<ItemType>> oldTreeRootPtr) const;
 
         void destroyTree(std::shared_ptr<BinaryNode<ItemType>> subTreePtr);
@@ -45,8 +48,8 @@ class BinaryNodeTree : public BinaryTreeInterface<ItemType>
         void preorderTraverse(void visit(ItemType &)) const;
         void inorderTraverse(void visit(ItemType &)) const;
         void postorderTraverse(void visit(ItemType &)) const;
-        BinaryNodeTree<ItemType> & operator = (const BinaryNodeTree<ItemType> & rightHandSide);
+        BinaryNodeTree<ItemType> & operator = (const BinaryNodeTree<ItemType> & rightHandSide);    
 };
 
-//#include "BinaryNodeTree.cpp"
+#include "BinaryNodeTree.cpp"
 #endif
