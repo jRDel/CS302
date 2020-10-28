@@ -4,12 +4,16 @@
 
 template<typename ItemType>
 BinaryNode<ItemType>::BinaryNode(){
-    item=null; //signals a empty node
+    item=NULL; //signals a empty node
+    leftChildPtr=nullptr;
+    rightChildPtr=nullptr;
 }
 
 template<typename ItemType>
 BinaryNode<ItemType>::BinaryNode(const ItemType & anItem){
     item=anItem;
+    leftChildPtr=nullptr;
+    rightChildPtr=nullptr;
 }
 
 template<typename ItemType>
@@ -31,7 +35,7 @@ ItemType BinaryNode<ItemType>::getItem() const{
 
 template<typename ItemType>
 bool BinaryNode<ItemType>::isLeaf() const{
-    if(leftChildptr==nullptr&&rightChildPtr==nullptr)
+    if(leftChildPtr==nullptr&&rightChildPtr==nullptr)
     {
         return true;
     }
@@ -43,7 +47,7 @@ bool BinaryNode<ItemType>::isLeaf() const{
 }
 
 template<typename ItemType>
-auto BinaryNode<ItemType>::getLeftChildPtr() const{
+std::shared_ptr<BinaryNode<ItemType>> BinaryNode<ItemType>::getLeftChildPtr() const{
     if(leftChildPtr==nullptr)
     {
         return nullptr;
@@ -56,7 +60,7 @@ auto BinaryNode<ItemType>::getLeftChildPtr() const{
 }
 
 template<typename ItemType>
-auto BinaryNode<ItemType>::getRightChildPtr() const{
+std::shared_ptr<BinaryNode<ItemType>> BinaryNode<ItemType>::getRightChildPtr() const{
     if(rightChildPtr==nullptr)
     {
         return nullptr;

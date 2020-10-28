@@ -14,14 +14,14 @@ class BinaryNodeTree : public BinaryTreeInterface<ItemType>
     protected:
         int getHeightHelper(std::shared_ptr<BinaryNode<ItemType>> subTreePtr) const;
         int getNumberOfNodesHelper(std::shared_ptr<BinaryNode<ItemType>> subTreePtr) const;
-
-        auto balancedAdd(std::shared_ptr<BinaryNode<ItemType>> subTreePtr, std::shared_ptr<BinaryNode<ItemType>> newNodePtr);
-        virtual std::shared_ptr<BinaryNode<ItemType>> removeValue(std::shared_ptr<BinaryNode<ItemType>> subTreePtr, const ItemType target, bool & isSuccessful) const;
+        int getNumberofNodes() const;
+        std::shared_ptr<BinaryNode<ItemType>> balancedAdd(std::shared_ptr<BinaryNode<ItemType>> subTreePtr, std::shared_ptr<BinaryNode<ItemType>> newNodePtr);
+        virtual std::shared_ptr<BinaryNode<ItemType>> removeValue(std::shared_ptr<BinaryNode<ItemType>> subTreePtr, const ItemType target, bool & isSuccessful);
 
         virtual std::shared_ptr<BinaryNode<ItemType>> findNode(std::shared_ptr<BinaryNode<ItemType>> oldTreeRootPtr, const ItemType& target) const;
         std::shared_ptr<BinaryNode<ItemType>> moveValuesUpTree(std::shared_ptr<BinaryNode<ItemType>> subTreePtr);
 
-        auto copyTree(const std::shared_ptr<BinaryNode<ItemType>> oldTreeRootPtr) const;
+        std::shared_ptr<BinaryNode<ItemType>> copyTree(const std::shared_ptr<BinaryNode<ItemType>> oldTreeRootPtr) const;
 
         void destroyTree(std::shared_ptr<BinaryNode<ItemType>> subTreePtr);
 
@@ -37,12 +37,11 @@ class BinaryNodeTree : public BinaryTreeInterface<ItemType>
 
         bool isEmpty() const;
         int getHeight() const;
-        int getNumberofNodes() const;
         ItemType getRootData() const throw(PrecondViolatedExcept);
         bool add(const ItemType & newData);
         bool remove(const ItemType & data);
         void clear();
-        ItemType getEntry(const ItemType & anEntry) const throw(NotFoundException);
+        ItemType getEntry(const ItemType & anEntry) throw(NotFoundException);
         bool contains(const ItemType & anEntry) const;
 
         void preorderTraverse(void visit(ItemType &)) const;
@@ -51,5 +50,5 @@ class BinaryNodeTree : public BinaryTreeInterface<ItemType>
         BinaryNodeTree<ItemType> & operator = (const BinaryNodeTree<ItemType> & rightHandSide);    
 };
 
-#include "BinaryNodeTree.cpp"
+//#include "BinaryNodeTree.cpp"
 #endif

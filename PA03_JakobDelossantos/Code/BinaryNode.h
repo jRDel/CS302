@@ -19,13 +19,13 @@ class BinaryNode
 
         bool isLeaf() const;
 
-        auto getLeftChildPtr() const;
-        auto getRightChildPtr() const;
+        std::shared_ptr<BinaryNode<ItemType>> getLeftChildPtr() const;
+        std::shared_ptr<BinaryNode<ItemType>> getRightChildPtr() const;
 
         void setLeftChildPtr(std::shared_ptr<BinaryNode<ItemType>> leftPtr);
         void setRightChildPtr(std::shared_ptr<BinaryNode<ItemType>> rightPtr);
 
 };
 
-#include "BinaryNode.cpp"
+//#include "BinaryNode.cpp"
 #endif

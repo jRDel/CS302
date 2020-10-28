@@ -15,7 +15,7 @@ public:
     virtual int getHeight() const = 0;
     // Gets the number of nodes in this binary tree
     // @return The number of nodes in the binary tree
-    virtual int getNumberOfNodes() const = 0;
+    //virtual int getNumberOfNodes() const = 0;
     // Gets the data that is in the root of the binary tree
     // @pre: The binary tree is not empty
     // @post: The root’s data has been returned, binary tree is unchanged
@@ -44,12 +44,12 @@ public:
     // If no such data was found, exception is thrown
     // @param target The data to locate
     // @return The data in the binary tree that matches the given data
-    virtual ItemType getEntry(const ItemType& target) const = 0; 
+    //virtual ItemType getEntry(const ItemType& target) const = 0; 
     // Tests whether the specified data occurs in this binary tree
     // @post The binary tree is unchanged
     // @param target The data to find
     // @return True if data matching the target occurs in the tree, or false otherwise
-    virtual bool contains(const ItemType& target) const = 0;
+    //virtual bool contains(const ItemType& target) const = 0;
     // Traverses this binary tree in preorder (inorder, postorder) and
     // calls the function visit once for each node
     // @param visit A client-defined function that performs an operation on either each visited node or its data
