@@ -55,3 +55,4 @@ the list and at the worst case the position of the element you are trying to fin
 is n. removeSorted would likely use getPosition to find the element that you 
 wish to remove, which takes O(n) on its own, and then to remove it would take another
 major operation, giving a worst case complexity of O(n^2).
+*/
