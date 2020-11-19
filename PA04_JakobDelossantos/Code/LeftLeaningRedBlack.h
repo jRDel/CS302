@@ -51,6 +51,7 @@
 
 
 #include "VoidRef.h"
+#include <iostream>
 
 
 struct LLTB_t
@@ -80,26 +81,30 @@ public:
 
 	LLTB_t* NewNode(void);
 
-	void* LookUp(const U32 value);
+	void* LookUp(const std::uint32_t value);
 
 	bool Insert(VoidRef_t ref);
 	LLTB_t* InsertRec(LLTB_t *pNode, VoidRef_t ref);
 
-	void Delete(const U32 value);
-	LLTB_t* DeleteRec(LLTB_t *pNode, const U32 value);
+	void Delete(const std::uint32_t value);
+	LLTB_t* DeleteRec(LLTB_t *pNode, const std::uint32_t value);
 	LLTB_t* DeleteMin(LLTB_t *pNode);
 
 	void SanityCheck(void);
-	void SanityCheckRec(LLTB_t *pNode, bool isParentRed, U32 blackDepth, U32 &minBlack, U32 &maxBlack);
+	void SanityCheckRec(LLTB_t *pNode, bool isParentRed, std::uint32_t blackDepth, std::uint32_t &minBlack, std::uint32_t &maxBlack);
 
-	U32  KeyCount(void);
-	U32  KeyCountRec(LLTB_t *pNode);
+	std::uint32_t  KeyCount(void);
+	std::uint32_t  KeyCountRec(LLTB_t *pNode);
+
+	LLTB_t* findParent(LLTB_t * rootPtr, const std::uint32_t value, const std::uint32_t parent, LLTB_t* parentPtr);
 
 	void LeafDepth(void);
-	U32  LeafDepthRec(LLTB_t *pNode, U32 depth, U32 ary[], U32 depthLimit, U32 blackDepth, U32 &minBlack, U32 &maxBlack);
+	std::uint32_t  LeafDepthRec(LLTB_t *pNode, std::uint32_t depth, std::uint32_t ary[], std::uint32_t depthLimit, std::uint32_t blackDepth, std::uint32_t &minBlack, std::uint32_t &maxBlack);
 
 	void Traverse(void);
-	void TraverseRec(LLTB_t *pNode, U32 &prev);
+	void TraverseRec(LLTB_t *pNode, std::uint32_t &prev);
+	
+
 };
 
 

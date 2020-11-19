@@ -13,10 +13,11 @@
 
 #pragma once
 
+#include <iostream>
 
 struct VoidRef_t
 {
-	U32   Key;
+	std::uint32_t  Key;
 	void* pContext;
 };
 

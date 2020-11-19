@@ -47,8 +47,10 @@
 /////////////////////////////////////////////////////////////////////////////
 
 
-#include "QzCommon.h"
+
 #include "LeftLeaningRedBlack.h"
+#include <iostream>
+#include <stdint.h>
 
 
 #ifdef USE_MALLOC_MACRO
@@ -65,7 +67,24 @@ static char THIS_FILE[] = __FILE__;
 // operations on the LLRB.
 //
 //#define USE_234_TREE
+//Helper functions
+template<typename T> 
+T Min(T a, T b)
+{
+	return a < b ? a : b;
+}
 
+template<typename T>
+T Max(T a, T b)
+{
+	return a > b ? a : b;
+}
+
+template<typename T>
+T ArraySize(T x[])
+{
+	return sizeof(x) / (sizeof((x)[0]));
+}
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -113,7 +132,7 @@ void LeftLeaningRedBlack::Free(LLTB_t *pNode)
 			Free(pNode->pRight);
 		}
 
-		SafeDelete(pNode);
+		delete pNode;
 	}
 }
 
@@ -150,7 +169,7 @@ LLTB_t* LeftLeaningRedBlack::NewNode(void)
 //
 //	If the key is not in the tree, this will return NULL.
 //
-void* LeftLeaningRedBlack::LookUp(U32 key)
+void* LeftLeaningRedBlack::LookUp(std::uint32_t key)
 {
 	LLTB_t *pNode = m_pRoot;
 
@@ -470,7 +489,7 @@ static LLTB_t* FixUp(LLTB_t *pNode)
 //
 //	Delete()
 //
-void LeftLeaningRedBlack::Delete(const U32 key)
+void LeftLeaningRedBlack::Delete(const std::uint32_t key)
 {
 	if (NULL != m_pRoot) {
 		m_pRoot = DeleteRec(m_pRoot, key);
@@ -489,7 +508,7 @@ void LeftLeaningRedBlack::Delete(const U32 key)
 //
 //	DeleteRec()
 //
-LLTB_t* LeftLeaningRedBlack::DeleteRec(LLTB_t *pNode, const U32 key)
+LLTB_t* LeftLeaningRedBlack::DeleteRec(LLTB_t *pNode, const std::uint32_t key)
 {
 	if (key < pNode->Ref.Key) {
 		if (NULL != pNode->pLeft) {
@@ -515,6 +534,7 @@ LLTB_t* LeftLeaningRedBlack::DeleteRec(LLTB_t *pNode, const U32 key)
 		// pNode cannot have a left child.
 		if ((key == pNode->Ref.Key) && (NULL == pNode->pRight)) {
 			Free(pNode);
+			std::cout<<"(Duplicate statement because of leaf deleted) Successfully deleted: "<<key<<std::endl;
 			return NULL;
 		}
 
@@ -545,6 +565,7 @@ LLTB_t* LeftLeaningRedBlack::DeleteRec(LLTB_t *pNode, const U32 key)
 	// Fix right-leaning red nodes and eliminate 4-nodes on the way up.
 	// Need to avoid allowing search operations to terminate on 4-nodes,
 	// or searching may not locate intended key.
+	std::cout<<"Successfully deleted: "<<key<<std::endl;
 	return FixUp(pNode);
 }
 
@@ -594,15 +615,15 @@ LLTB_t* LeftLeaningRedBlack::DeleteMin(LLTB_t *pNode)
 void LeftLeaningRedBlack::SanityCheck(void)
 {
 	if (NULL != m_pRoot) {
-		U32 minBlack = 0xFFFFFFFF;
-		U32 maxBlack = 0;
+		std::uint32_t minBlack = 0xFFFFFFFF;
+		std::uint32_t maxBlack = 0;
 
 		// The root of the tree must always be a black node.
-		QzAssert(false == m_pRoot->IsRed);
+		
 
 		SanityCheckRec(m_pRoot, false, 0, minBlack, maxBlack);
 
-		QzAssert(minBlack == maxBlack);
+
 	}
 }
 
@@ -613,11 +634,11 @@ void LeftLeaningRedBlack::SanityCheck(void)
 //
 //	Verifies that the red-black tree is properly formed.
 //
-void LeftLeaningRedBlack::SanityCheckRec(LLTB_t *pNode, bool isParentRed, U32 blackDepth, U32 &minBlack, U32 &maxBlack)
+void LeftLeaningRedBlack::SanityCheckRec(LLTB_t *pNode, bool isParentRed, std::uint32_t blackDepth, std::uint32_t &minBlack, std::uint32_t &maxBlack)
 {
 	if (pNode->IsRed) {
 		// The parent of a red node must be black.
-		QzAssert(false == isParentRed);
+		
 
 	}
 	else {
@@ -626,7 +647,7 @@ void LeftLeaningRedBlack::SanityCheckRec(LLTB_t *pNode, bool isParentRed, U32 bl
 
 	// The child of a red node must be black.
 	if (isParentRed) {
-		QzAssert(false == pNode->IsRed);
+		
 	}
 
 	// Only apply this test if the LLRB is arranged as a 2-3 tree.
@@ -637,17 +658,17 @@ void LeftLeaningRedBlack::SanityCheckRec(LLTB_t *pNode, bool isParentRed, U32 bl
 	// The other must be black.
 	if ((NULL != pNode->pLeft) && (NULL != pNode->pRight)) {
 		if (IsRed(pNode->pLeft)) {
-			QzAssert(false == IsRed(pNode->pRight));
+			
 		}
 		if (IsRed(pNode->pRight)) {
-			QzAssert(false == IsRed(pNode->pLeft));
+			
 		}
 	}
 #endif
 
 	if (NULL != pNode->pLeft) {
 		// The left child must come before this node in sorting order.
-		QzAssert(pNode->pLeft->Ref.Key < pNode->Ref.Key);
+		
 
 		SanityCheckRec(pNode->pLeft, pNode->IsRed, blackDepth, minBlack, maxBlack);
 	}
@@ -658,7 +679,7 @@ void LeftLeaningRedBlack::SanityCheckRec(LLTB_t *pNode, bool isParentRed, U32 bl
 
 	if (NULL != pNode->pRight) {
 		// The right child must come after this node in sorting order.
-		QzAssert(pNode->pRight->Ref.Key > pNode->Ref.Key);
+	
 
 		SanityCheckRec(pNode->pRight, pNode->IsRed, blackDepth, minBlack, maxBlack);
 	}
@@ -675,7 +696,7 @@ void LeftLeaningRedBlack::SanityCheckRec(LLTB_t *pNode, bool isParentRed, U32 bl
 //
 //	Recursively count the number of keys in the tree.
 //
-U32 LeftLeaningRedBlack::KeyCount(void)
+std::uint32_t LeftLeaningRedBlack::KeyCount(void)
 {
 	return KeyCountRec(m_pRoot);
 }
@@ -685,9 +706,9 @@ U32 LeftLeaningRedBlack::KeyCount(void)
 //
 //	KeyCountRec()
 //
-U32 LeftLeaningRedBlack::KeyCountRec(LLTB_t *pNode)
+std::uint32_t LeftLeaningRedBlack::KeyCountRec(LLTB_t *pNode)
 {
-	U32 tally = 0;
+	std::uint32_t tally = 0;
 
 	if (NULL != pNode) {
 		tally += 1;
@@ -704,6 +725,60 @@ U32 LeftLeaningRedBlack::KeyCountRec(LLTB_t *pNode)
 	return tally;
 }
 
+//Method to find parent of a value or node
+LLTB_t* LeftLeaningRedBlack::findParent(LLTB_t* rootPtr, const std::uint32_t value, const std::uint32_t parent, LLTB_t* parentPtr)
+{
+	
+	if (rootPtr == NULL)
+        return rootPtr;
+ 
+    // If current node is the required node
+    if (rootPtr->Ref.Key == value) {
+ 
+        // Print its parent
+		std::cout<<"The parent value is: "<<parent<<std::endl;
+		std::cout<<"The color of the parent is: "<<parentPtr->IsRed<<std::endl;
+        return parentPtr;
+		
+    }
+    else {
+ 
+        // Recursive calls for the children
+        // of the current node
+        // Current node is now the new parent
+        findParent(rootPtr->pLeft, value, rootPtr->Ref.Key, rootPtr);
+        findParent(rootPtr->pRight, value, rootPtr->Ref.Key, rootPtr);
+    }
+	
+		/*if (NULL != rootPtr->pLeft) {
+			if(rootPtr->pLeft->Ref.Key==value)
+			{
+				return rootPtr; //then this is the parent
+			}
+			else
+			{
+				findParent(rootPtr->pLeft, value);
+			}
+			
+		}
+
+		if (NULL != rootPtr->pRight) {
+			if(rootPtr->pRight->Ref.Key==value)
+			{
+				return rootPtr; //then this is the parent
+			}
+			else
+			{
+				findParent(rootPtr->pRight, value);
+			}
+			
+		}
+
+	return rootPtr;*/
+
+	
+
+}
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -724,22 +799,22 @@ void LeftLeaningRedBlack::LeafDepth(void)
 	// This array will be used to track the number of nodes at each depth of
 	// the binary tree.  This is the true depth of each node, not the black
 	// depth.
-	U32 ary[64];
-	for (U32 i = 0; i < ArraySize(ary); ++i) {
+	std::uint32_t ary[64];
+	for (std::uint32_t i = 0; i < ArraySize(ary); ++i) {
 		ary[i] = 0;
 	}
 
-	U32 maxDepth = 0;
-	U32 minBlack = 0xFFFFFFFF;
-	U32 maxBlack = 0;
+	std::uint32_t maxDepth = 0;
+	std::uint32_t minBlack = 0xFFFFFFFF;
+	std::uint32_t maxBlack = 0;
 
 	if (NULL != m_pRoot) {
 		maxDepth = LeafDepthRec(m_pRoot, 0, ary, ArraySize(ary), 0, minBlack, maxBlack);
 	}
 
-	U32 tally = 0;
+	std::uint32_t tally = 0;
 
-	for (U32 i = 0; i < maxDepth; ++i) {
+	for (std::uint32_t i = 0; i < maxDepth; ++i) {
 		tally += ary[i];
 
 		printf("%3d: %5d = %5d\n", i, ary[i], tally);
@@ -750,7 +825,7 @@ void LeftLeaningRedBlack::LeafDepth(void)
 	// All leaf nodes must have the same number of black nodes between the
 	// root and each leaf.  Therefore the minimum and maximum number of black
 	// nodes must be the same.
-	QzAssert(minBlack == maxBlack);
+	
 }
 
 
@@ -758,7 +833,7 @@ void LeftLeaningRedBlack::LeafDepth(void)
 //
 //	LeafDepthRec()
 //
-U32 LeftLeaningRedBlack::LeafDepthRec(LLTB_t *pNode, U32 depth, U32 ary[], U32 depthLimit, U32 blackDepth, U32 &minBlack, U32 &maxBlack)
+std::uint32_t LeftLeaningRedBlack::LeafDepthRec(LLTB_t *pNode, std::uint32_t depth, std::uint32_t ary[], std::uint32_t depthLimit, std::uint32_t blackDepth, std::uint32_t &minBlack, std::uint32_t &maxBlack)
 {
 	// Increment the count of nodes at the current depth of the tree.
 	ary[depth] += 1;
@@ -782,8 +857,8 @@ U32 LeftLeaningRedBlack::LeafDepthRec(LLTB_t *pNode, U32 depth, U32 ary[], U32 d
 	}
 
 	// Record the total depth along both the left and right children.
-	U32 d1 = 0;
-	U32 d2 = 0;
+	std::uint32_t d1 = 0;
+	std::uint32_t d2 = 0;
 
 	if (NULL != pNode->pLeft) {
 		d1 = LeafDepthRec(pNode->pLeft, depth + 1, ary, depthLimit, blackDepth, minBlack, maxBlack);
@@ -816,7 +891,7 @@ U32 LeftLeaningRedBlack::LeafDepthRec(LLTB_t *pNode, U32 depth, U32 ary[], U32 d
 void LeftLeaningRedBlack::Traverse(void)
 {
 	if (NULL != m_pRoot) {
-		U32 prev = 0;
+		std::uint32_t prev = 0;
 		TraverseRec(m_pRoot, prev);
 		printf("\n\n");
 	}
@@ -827,21 +902,25 @@ void LeftLeaningRedBlack::Traverse(void)
 //
 //	TraverseRec()
 //
-void LeftLeaningRedBlack::TraverseRec(LLTB_t *pNode, U32 &prev)
+void LeftLeaningRedBlack::TraverseRec(LLTB_t *pNode, std::uint32_t &prev)
 {
-	QzAssert(NULL != pNode);
 
 	if (NULL != pNode->pLeft) {
 		TraverseRec(pNode->pLeft, prev);
 	}
 
-	QzAssert(prev < pNode->Ref.Key);
 	prev = pNode->Ref.Key;
-	printf("%4d", pNode->Ref.Key);
+	std::cout<<"Value of Node:";
+	printf("%4d\n", pNode->Ref.Key);
+	printf("The color of this node is: ");
+	std::cout<< pNode->IsRed <<std::endl;
+	LLTB_t * parentNode = findParent(m_pRoot, pNode->Ref.Key, pNode->Ref.Key, m_pRoot);
 
 	if (NULL != pNode->pRight) {
 		TraverseRec(pNode->pRight, prev);
 	}
 }
 
+
+//Helper functions
 
