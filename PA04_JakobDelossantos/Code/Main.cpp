@@ -29,11 +29,12 @@ int main()
             fourthVar=num;
         }
     }
-    //std::cout<<std::endl;
+    
     testTree.Traverse();
-    LLTB_t delNode;
+    
     testTree.Delete(fourthVar);
-
+    std::cout<<"Successfully deleted: "<<fourthVar<<std::endl;
+    
     return 0;
 }
 

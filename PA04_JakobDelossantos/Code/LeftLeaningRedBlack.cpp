@@ -534,7 +534,6 @@ LLTB_t* LeftLeaningRedBlack::DeleteRec(LLTB_t *pNode, const std::uint32_t key)
 		// pNode cannot have a left child.
 		if ((key == pNode->Ref.Key) && (NULL == pNode->pRight)) {
 			Free(pNode);
-			std::cout<<"(Duplicate statement because of leaf deleted) Successfully deleted: "<<key<<std::endl;
 			return NULL;
 		}
 
@@ -565,7 +564,7 @@ LLTB_t* LeftLeaningRedBlack::DeleteRec(LLTB_t *pNode, const std::uint32_t key)
 	// Fix right-leaning red nodes and eliminate 4-nodes on the way up.
 	// Need to avoid allowing search operations to terminate on 4-nodes,
 	// or searching may not locate intended key.
-	std::cout<<"Successfully deleted: "<<key<<std::endl;
+	
 	return FixUp(pNode);
 }
 
@@ -737,7 +736,15 @@ LLTB_t* LeftLeaningRedBlack::findParent(LLTB_t* rootPtr, const std::uint32_t val
  
         // Print its parent
 		std::cout<<"The parent value is: "<<parent<<std::endl;
-		std::cout<<"The color of the parent is: "<<parentPtr->IsRed<<std::endl;
+		std::cout<<"The color of the parent is: ";
+		if(parentPtr->IsRed)
+		{
+			std::cout<< "red" <<std::endl;
+		}
+		else
+		{
+			std::cout<< "black" <<std::endl;
+		}
         return parentPtr;
 		
     }
@@ -913,7 +920,15 @@ void LeftLeaningRedBlack::TraverseRec(LLTB_t *pNode, std::uint32_t &prev)
 	std::cout<<"Value of Node:";
 	printf("%4d\n", pNode->Ref.Key);
 	printf("The color of this node is: ");
-	std::cout<< pNode->IsRed <<std::endl;
+	if(pNode->IsRed)
+	{
+		std::cout<< "red" <<std::endl;
+	}
+	else
+	{
+		std::cout<< "black" <<std::endl;
+	}
+	
 	LLTB_t * parentNode = findParent(m_pRoot, pNode->Ref.Key, pNode->Ref.Key, m_pRoot);
 
 	if (NULL != pNode->pRight) {
