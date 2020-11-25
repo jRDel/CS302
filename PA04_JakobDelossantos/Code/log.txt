@@ -1,0 +1,83 @@
+//This is the log file which depicts output of the llrbt after insertion, then the llrbt after deletion of the fourth inserted random variable.
+
+--------------------Tree after insertion, before deletion--------------------
+Value of Node:   6
+The color of this node is: black
+The parent value is: 11
+The color of the parent is: red
+Value of Node:  11
+The color of this node is: red
+The parent value is: 21
+The color of the parent is: black
+Value of Node:  20
+The color of this node is: black
+The parent value is: 11
+The color of the parent is: red
+Value of Node:  21
+The color of this node is: black
+The parent value is: 39
+The color of the parent is: black
+Value of Node:  36
+The color of this node is: black
+The parent value is: 21
+The color of the parent is: black
+Value of Node:  39
+The color of this node is: black
+The parent value is: 39
+The color of the parent is: black
+Value of Node:  45
+The color of this node is: red
+The parent value is: 48
+The color of the parent is: black
+Value of Node:  48
+The color of this node is: black
+The parent value is: 70
+The color of the parent is: black
+Value of Node:  70
+The color of this node is: black
+The parent value is: 39
+The color of the parent is: black
+Value of Node:  78
+The color of this node is: black
+The parent value is: 70
+The color of the parent is: black
+
+Successfully deleted: 21
+
+--------------------Tree after deletion--------------------
+Value of Node:   6
+The color of this node is: black
+The parent value is: 11
+The color of the parent is: black
+Value of Node:  11
+The color of this node is: black
+The parent value is: 39
+The color of the parent is: black
+Value of Node:  20
+The color of this node is: red
+The parent value is: 36
+The color of the parent is: black
+Value of Node:  36
+The color of this node is: black
+The parent value is: 11
+The color of the parent is: black
+Value of Node:  39
+The color of this node is: black
+The parent value is: 39
+The color of the parent is: black
+Value of Node:  45
+The color of this node is: red
+The parent value is: 48
+The color of the parent is: black
+Value of Node:  48
+The color of this node is: black
+The parent value is: 70
+The color of the parent is: black
+Value of Node:  70
+The color of this node is: black
+The parent value is: 39
+The color of the parent is: black
+Value of Node:  78
+The color of this node is: black
+The parent value is: 70
+The color of the parent is: black

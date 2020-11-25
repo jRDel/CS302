@@ -755,35 +755,7 @@ LLTB_t* LeftLeaningRedBlack::findParent(LLTB_t* rootPtr, const std::uint32_t val
         // Current node is now the new parent
         findParent(rootPtr->pLeft, value, rootPtr->Ref.Key, rootPtr);
         findParent(rootPtr->pRight, value, rootPtr->Ref.Key, rootPtr);
-    }
-	
-		/*if (NULL != rootPtr->pLeft) {
-			if(rootPtr->pLeft->Ref.Key==value)
-			{
-				return rootPtr; //then this is the parent
-			}
-			else
-			{
-				findParent(rootPtr->pLeft, value);
-			}
-			
-		}
-
-		if (NULL != rootPtr->pRight) {
-			if(rootPtr->pRight->Ref.Key==value)
-			{
-				return rootPtr; //then this is the parent
-			}
-			else
-			{
-				findParent(rootPtr->pRight, value);
-			}
-			
-		}
-
-	return rootPtr;*/
-
-	
+    }	
 
 }
 
@@ -900,7 +872,7 @@ void LeftLeaningRedBlack::Traverse(void)
 	if (NULL != m_pRoot) {
 		std::uint32_t prev = 0;
 		TraverseRec(m_pRoot, prev);
-		printf("\n\n");
+		printf("\n");
 	}
 }
 

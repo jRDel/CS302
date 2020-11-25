@@ -29,12 +29,18 @@ int main()
             fourthVar=num;
         }
     }
-    
+     //Tree after inserting, before deletion
+     std::cout<<"--------------------Tree after insertion, before deletion--------------------"<<std::endl;
     testTree.Traverse();
-    
+
+    //Deletion
     testTree.Delete(fourthVar);
-    std::cout<<"Successfully deleted: "<<fourthVar<<std::endl;
-    
+    std::cout<<"Successfully deleted: "<<fourthVar<<std::endl<<std::endl;
+
+    //Tree after deletion
+    std::cout<<"--------------------Tree after deletion--------------------"<<std::endl;
+    testTree.Traverse();
+   
     return 0;
 }
 
